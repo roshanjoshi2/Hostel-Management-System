@@ -8,6 +8,7 @@
         public string Address { get; set; }
 
         public double Contact { get; set; }
+        
 
         public int Capacity { get; set; }
 
