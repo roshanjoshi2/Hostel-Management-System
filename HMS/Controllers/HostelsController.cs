@@ -12,12 +12,12 @@ namespace HMS.Controllers
 {
     public class HostelsController : Controller
     {
-        private readonly HMSDbcontext _context = new();
+        private readonly HMSDbcontext _context;
 
-        //public HostelsController(HMSDbcontext context)
-        //{
-        //    _context = context;
-        //}
+        public HostelsController(HMSDbcontext context)
+         {
+            _context = context;
+        }
 
         // GET: Hostels
         public async Task<IActionResult> Index()

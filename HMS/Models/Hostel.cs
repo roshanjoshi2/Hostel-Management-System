@@ -20,5 +20,7 @@
 
         public float Fees{ get; set; }
 
+        public List<Student> Students{ get; set; }
+
     }
 }

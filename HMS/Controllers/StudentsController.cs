@@ -12,12 +12,12 @@ namespace HMS.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly HMSDbcontext _context = new();
+        private readonly HMSDbcontext _context ;
 
-        //public StudentsController(HMSDbcontext context)
-        //{
-        //    _context = context;
-        //}
+        public StudentsController(HMSDbcontext context)
+        {
+            _context = context;
+        }
 
         // GET: Students
         public async Task<IActionResult> Index()
@@ -46,7 +46,7 @@ namespace HMS.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
-            var hostels = _context.Hostels.Select(x => new SelectListItem { Text = x.Name, Value = x.Name });
+            var hostels = _context.Hostels.Select(x => new SelectListItem { Text = x.Name, Value = x.ID.ToString() });
             ViewData["hostels"] = hostels;
             return View();
         }

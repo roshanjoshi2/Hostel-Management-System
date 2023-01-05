@@ -12,6 +12,8 @@
 
         public double Cit { get; set; }
 
-        public string HostelName { get; set; }
+        public Hostel HostelName { get; set; }
+
+        public int  HostelID { get; set; }
     }
 }
