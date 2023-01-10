@@ -22,7 +22,7 @@ namespace HMS.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Students.ToListAsync());
+              return View(await _context.Students.Include(m=>m.HostelName).ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -56,7 +56,7 @@ namespace HMS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,ContactNumber,Email,Cit,HostelName")] Student student)
+        public async Task<IActionResult> Create([Bind("ID,Name,ContactNumber,Email,Cit,HostelID")] Student student)
         {
             if (ModelState.IsValid)
             {

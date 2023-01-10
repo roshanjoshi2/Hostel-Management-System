@@ -10,7 +10,7 @@
 <hr />
 <div class="row m-4">
     <div class="col-md-6">
-        <form asp-action="Create">
+        <form asp-controller="Hostels" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                
-                <input type="submit" value="Create" class="btn btn-primary" asp-action="Index" />
+                <input type="submit" value="Create" class="btn btn-primary"  />
             </div>
         </form>
     </div>

@@ -1,4 +1,6 @@
-﻿namespace HMS.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HMS.Models
 {
     public class Student
     {
@@ -12,8 +14,11 @@
 
         public double Cit { get; set; }
 
-        public Hostel HostelName { get; set; }
+       
 
+        [ForeignKey("Hostels")]
         public int  HostelID { get; set; }
+
+        public Hostel HostelName { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace HMS.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HMS.Models
 {
     public class Hostel
     {
@@ -20,7 +23,12 @@
 
         public float Fees{ get; set; }
 
-        public List<Student> Students{ get; set; }
+        [NotMapped]
+        public IFormFile ProfileImage { get; set; }
+
+        public string ProfileImagePath { get; set; }
+
+        public virtual List<Student> Students{ get; set; }
 
     }
 }
