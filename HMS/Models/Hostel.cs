@@ -25,7 +25,6 @@ namespace HMS.Models
 
         [NotMapped]
         public IFormFile ProfileImage { get; set; }
-
         public string ProfileImagePath { get; set; }
 
         public virtual List<Student> Students{ get; set; }

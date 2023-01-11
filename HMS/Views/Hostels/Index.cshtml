@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<HMS.Models.Hostel>
 
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -13,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                
+                @Html.DisplayNameFor(model => model.ProfileImagePath)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -44,11 +45,17 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            var profilesrc = string.IsNullOrEmpty(item.ProfileImagePath)
+            ? "/Images/Profiles/download.png"
+            : item.ProfileImagePath;
+            <tr>
           
             <td>
-                    <img src="/download.png" alt="Girl in a jacket" width="30">
+                    <img src="@profilesrc" alt="Girl in a jacket" width="30">
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>

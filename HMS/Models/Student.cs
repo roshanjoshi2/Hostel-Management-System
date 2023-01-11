@@ -14,7 +14,16 @@ namespace HMS.Models
 
         public double Cit { get; set; }
 
-       
+
+        //[NotMapped]
+        //public IFormFile ProfileImage { get; set; }
+
+        //public string StudentsProfileImagePath { get; set; }
+
+
+
+
+
 
         [ForeignKey("Hostels")]
         public int  HostelID { get; set; }

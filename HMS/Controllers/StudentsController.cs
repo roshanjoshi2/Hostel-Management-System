@@ -58,6 +58,7 @@ namespace HMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,ContactNumber,Email,Cit,HostelID")] Student student)
         {
+           
             if (ModelState.IsValid)
             {
                 _context.Add(student);

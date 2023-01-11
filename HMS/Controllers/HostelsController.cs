@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HMS;
 using HMS.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace HMS.Controllers
 {
@@ -58,8 +59,23 @@ namespace HMS.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Hostel hostel)
         {
+           //var profileImage = hostel.ProfileImage;
+            
+           // var fileName = profileImage.FileName;
+           // var uniqueFileName =$"{Guid.NewGuid()}_{fileName}";
+           // var relativePath = $"/Images/Profiles/{uniqueFileName}";
+           // var currentAppPath = Directory.GetCurrentDirectory();
+           //var fullFilePath = Path.Combine(currentAppPath,$"wwwroot/{relativePath}");
+
+           // var stream = System.IO.File.Create(fullFilePath);
+           // profileImage.CopyTo(stream);
+
+            var relativePath = saveProfileImage(hostel.ProfileImage);
+           // hostel.ProfileImagePath = relativePath;
+            
             if (ModelState.IsValid)
             {
+                hostel.ProfileImagePath = relativePath;
                 _context.Hostels.Add(hostel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -70,6 +86,7 @@ namespace HMS.Controllers
         // GET: Hostels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+           
             if (id == null || _context.Hostels == null)
             {
                 return NotFound();
@@ -97,8 +114,10 @@ namespace HMS.Controllers
 
             if (ModelState.IsValid)
             {
+                var relativePath = saveProfileImage(hostel.ProfileImage);
                 try
                 {
+                    hostel.ProfileImagePath = relativePath;
                     _context.Update(hostel);
                     await _context.SaveChangesAsync();
                 }
@@ -158,6 +177,22 @@ namespace HMS.Controllers
         private bool HostelExists(int id)
         {
           return _context.Hostels.Any(e => e.ID == id);
+        }
+
+
+        private string saveProfileImage(IFormFile profileImage)
+        {
+           
+
+            var fileName = profileImage.FileName;
+            var uniqueFileName = $"{Guid.NewGuid()}_{fileName}";
+            var relativePath = $"/Images/Profiles/{uniqueFileName}";
+            var currentAppPath = Directory.GetCurrentDirectory();
+            var fullFilePath = Path.Combine(currentAppPath, $"wwwroot/{relativePath}");
+
+            var stream = System.IO.File.Create(fullFilePath);
+            profileImage.CopyTo(stream);
+            return relativePath;
         }
     }
 }
